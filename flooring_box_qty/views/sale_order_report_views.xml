@@ -2,13 +2,9 @@
 <odoo>
     <template id="report_saleorder_document_flooring_box_qty" inherit_id="sale.report_saleorder_document">
         <xpath expr="//th[@name='th_quantity']" position="before">
-            <th t-if="doc.order_line.filtered('use_box_sqft_calculation')" name="th_requested_sqft" class="text-end">Requested Sq Ft</th>
             <th t-if="doc.order_line.filtered('use_box_sqft_calculation')" name="th_sqft_per_box" class="text-end">Sq Ft/Box</th>
         </xpath>
         <xpath expr="//td[@name='td_product_quantity']" position="before">
-            <td t-if="doc.order_line.filtered('use_box_sqft_calculation')" name="td_requested_sqft" class="text-end">
-                <span t-if="line.use_box_sqft_calculation" t-field="line.requested_sqft"/>
-            </td>
             <td t-if="doc.order_line.filtered('use_box_sqft_calculation')" name="td_sqft_per_box" class="text-end">
                 <span t-if="line.use_box_sqft_calculation" t-field="line.sqft_per_box"/>
             </td>
@@ -36,13 +32,9 @@
 
     <template id="sale_order_portal_content_flooring_box_qty" inherit_id="sale.sale_order_portal_content">
         <xpath expr="//th[@id='product_qty_header']" position="before">
-            <th t-if="sale_order.order_line.filtered('use_box_sqft_calculation')" class="text-end">Requested Sq Ft</th>
             <th t-if="sale_order.order_line.filtered('use_box_sqft_calculation')" class="text-end">Sq Ft/Box</th>
         </xpath>
         <xpath expr="//td[@name='td_product_quantity']" position="before">
-            <td t-if="sale_order.order_line.filtered('use_box_sqft_calculation')" class="text-end">
-                <span t-if="line.use_box_sqft_calculation" t-field="line.requested_sqft"/>
-            </td>
             <td t-if="sale_order.order_line.filtered('use_box_sqft_calculation')" class="text-end">
                 <span t-if="line.use_box_sqft_calculation" t-field="line.sqft_per_box"/>
             </td>
