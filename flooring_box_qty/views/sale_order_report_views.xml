@@ -14,7 +14,7 @@
                 <t t-if="line.use_box_sqft_calculation">
                     <span t-field="line.product_uom_qty" class="text-nowrap"/>
                     <span t-field="line.product_uom_id"/>
-                    <span t-if="line.box_qty">
+                    <span t-if="line.box_qty" class="text-muted small d-block">
                         (<span t-field="line.box_qty"/> boxes)
                     </span>
                 </t>
@@ -45,7 +45,7 @@
                     <div id="quote_qty">
                         <span t-field="line.product_uom_qty"/>
                         <span t-field="line.product_uom_id"/>
-                        <span t-if="line.box_qty">
+                        <span t-if="line.box_qty" class="text-muted small d-block">
                             (<span t-field="line.box_qty"/> boxes)
                         </span>
                     </div>
