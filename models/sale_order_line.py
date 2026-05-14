@@ -78,3 +78,31 @@ class SaleOrderLine(models.Model):
             boxes = math.ceil(requested_sqft / sqft_per_box)
             line.box_qty = boxes
             line.product_uom_qty = boxes * sqft_per_box
+
+
+class StockMove(models.Model):
+    _inherit = "stock.move"
+
+    received_box_qty = fields.Integer(string="Received Boxes")
+    sqft_per_box = fields.Float(
+        related="product_id.sqft_per_box",
+        string="Sq Ft per Box",
+        readonly=True,
+    )
+    use_box_sqft_calculation = fields.Boolean(
+        related="product_id.use_box_sqft_calculation",
+        string="Use Box Sq Ft Calculation",
+        readonly=True,
+    )
+
+    @api.onchange("product_id", "received_box_qty")
+    def _onchange_received_box_qty(self):
+        for move in self:
+            if (
+                not move.product_id.use_box_sqft_calculation
+                or move.sqft_per_box <= 0
+                or move.received_box_qty <= 0
+            ):
+                continue
+
+            move.quantity = move.received_box_qty * move.sqft_per_box
