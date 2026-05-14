@@ -1,12 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
+    <record id="product_category_form_view_flooring_box_qty" model="ir.ui.view">
+        <field name="name">product.category.form.flooring.box.qty</field>
+        <field name="model">product.category</field>
+        <field name="inherit_id" ref="product.product_category_form_view"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='parent_id']" position="after">
+                <field name="use_box_sqft_calculation"/>
+            </xpath>
+        </field>
+    </record>
+
     <record id="product_template_form_view_flooring_box_qty" model="ir.ui.view">
         <field name="name">product.template.form.flooring.box.qty</field>
         <field name="model">product.template</field>
         <field name="inherit_id" ref="product.product_template_form_view"/>
         <field name="arch" type="xml">
-            <xpath expr="//field[@name='uom_id']" position="after">
-                <field name="sqft_per_box"/>
+            <xpath expr="//field[@name='categ_id']" position="after">
+                <field name="use_box_sqft_calculation" invisible="1"/>
+                <field name="sqft_per_box" invisible="not use_box_sqft_calculation"/>
             </xpath>
         </field>
     </record>
@@ -17,8 +29,9 @@
         <field name="inherit_id" ref="sale.view_order_form"/>
         <field name="arch" type="xml">
             <xpath expr="//field[@name='order_line']//*[self::list or self::tree]//field[@name='product_uom_qty']" position="before">
-                <field name="requested_sqft" optional="show"/>
-                <field name="sqft_per_box" optional="show" readonly="1"/>
+                <field name="use_box_sqft_calculation" column_invisible="1"/>
+                <field name="requested_sqft" optional="show" invisible="not use_box_sqft_calculation"/>
+                <field name="sqft_per_box" optional="show" readonly="1" invisible="not use_box_sqft_calculation"/>
             </xpath>
         </field>
     </record>
