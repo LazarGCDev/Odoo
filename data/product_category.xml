@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<odoo>
-    <record id="product_category_floorings" model="product.category">
-        <field name="name">Floorings</field>
-        <field name="use_box_sqft_calculation">1</field>
-    </record>
-</odoo>
