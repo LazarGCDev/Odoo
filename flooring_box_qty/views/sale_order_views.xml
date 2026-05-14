@@ -32,6 +32,7 @@
                 <field name="use_box_sqft_calculation" column_invisible="1"/>
                 <field name="requested_sqft" optional="show" invisible="not use_box_sqft_calculation"/>
                 <field name="sqft_per_box" optional="show" readonly="1" invisible="not use_box_sqft_calculation"/>
+                <field name="box_qty" optional="show" readonly="1" invisible="not use_box_sqft_calculation"/>
             </xpath>
         </field>
     </record>
